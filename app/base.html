@@ -1,0 +1,13 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - HW4 - tufengxu</title>
+      {% else %}
+      <title>BU EC500C1 HW4</title>
+      {% endif %}
+    </head>
+    <body>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
