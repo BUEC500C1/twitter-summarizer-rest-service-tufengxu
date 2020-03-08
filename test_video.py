@@ -1,6 +1,6 @@
-from video import get_feeds
-from video import text_to_image
-from video import image_to_video
+from tweets_to_video import get_feeds
+from tweets_to_video import text_to_image
+from tweets_to_video import image_to_video
 import queue
 
 
