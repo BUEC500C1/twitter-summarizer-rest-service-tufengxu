@@ -21,6 +21,7 @@ jobs:
         pip install pillow
         pip install tweepy
         pip install nltk
+        pip install flask
 
     - name: Lint with flake8
       run: |
