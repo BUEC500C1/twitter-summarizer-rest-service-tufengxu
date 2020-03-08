@@ -2,7 +2,9 @@ from flask import render_template
 from flask import send_file
 from flask import send_from_directory
 from app import app
-from video import *
+from video import get_feeds
+from video import text_to_image
+from video import image_to_video
 import os
 import request
 
