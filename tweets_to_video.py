@@ -20,27 +20,32 @@ import os
 
 
 def get_feeds(name):
-    # 1) Connect to Twitter API
-    auth = OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_secret)
-    api = tweepy.API(auth)
-    # 2) Get tweets
     tweets_list = []
-    new_tweet = api.user_timeline(screen_name=name, count=50)
-    tweets_list.extend(new_tweet)
-    # 3) Pre-processing of the original tweets
-    cleaned_tweets_list = []  # All cleaned tweets are stored in this list
-    for status in tweets_list:
-        tweet_i = status.text.encode('utf-8')
-        removed = re.sub(r'@[A-Za-z0-9]+', '', tweet_i.decode('utf-8'))
-        link_rm = re.sub('https?://[A-Za-z0-9./]+', '', removed)
-        number_rm = re.sub('[^a-zA-Z]', ' ', link_rm)
-        lower = number_rm.lower()
-        tok = WordPunctTokenizer()
-        words = tok.tokenize(lower)
-        cleaned = (' '.join(words)).strip()
-        cleaned_tweets_list.append(cleaned)
-    return cleaned_tweets_list
+    if consumer_key == '':
+        f = open("example.txt")
+        ttt = f.readlines()
+        for t in ttt:
+            tweets_list.extend(t)
+        return tweets_list
+    else:
+        auth = OAuthHandler(consumer_key, consumer_secret)
+        auth.set_access_token(access_token, access_secret)
+        api = tweepy.API(auth)
+        new_tweet = api.user_timeline(screen_name=name, count=50)
+        tweets_list.extend(new_tweet)
+    # Processing the tweets
+        cleaned_tweets_list = []  # All cleaned tweets are stored in this list
+        for status in tweets_list:
+            tweet_i = status.text.encode('utf-8')
+            removed = re.sub(r'@[A-Za-z0-9]+', '', tweet_i.decode('utf-8'))
+            link_rm = re.sub('https?://[A-Za-z0-9./]+', '', removed)
+            number_rm = re.sub('[^a-zA-Z]', ' ', link_rm)
+            lower = number_rm.lower()
+            tok = WordPunctTokenizer()
+            words = tok.tokenize(lower)
+            cleaned = (' '.join(words)).strip()
+            cleaned_tweets_list.append(cleaned)
+        return cleaned_tweets_list
 
 
 def text_to_image(raw, th):
