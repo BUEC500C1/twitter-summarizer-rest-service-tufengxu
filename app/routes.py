@@ -2,9 +2,10 @@ from flask import render_template
 from flask import send_file
 from flask import send_from_directory
 from app import app
-from tweets_to_video import get_feeds
-from tweets_to_video import text_to_image
-from tweets_to_video import image_to_video
+# from tweets_to_video import get_feeds
+# from tweets_to_video import text_to_image
+# from tweets_to_video import image_to_video
+from tweets_to_video import *
 import os
 import request
 
