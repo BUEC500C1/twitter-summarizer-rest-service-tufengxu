@@ -55,7 +55,7 @@ def text_to_image(raw, th):
         text += raw[col: col + 40] + '\n'
         col += 40
     # set the fonts
-    font = ImageFont.truetype("/Users/fengxutu/Documents/BU/EC500/Fonts/" + str(th % 2) + ".ttf", 25)
+    font = ImageFont.truetype("0.ttf", 25)
     image = Image.open("BU_Twitter.png")
     height, width = image.size
     draw = ImageDraw.Draw(image)
